@@ -1,3 +1,4 @@
+// Differents critères de choix
 export const criteres = [
     {
         id: "1.1",
