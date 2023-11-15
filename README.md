@@ -28,6 +28,7 @@ La VM est fournie par notre partenaire Neutral-IT.
 
 Celle-ci ne **possède pas** d’IP publique.
 
+
 Seuls les services SSH et web (port 80) sont exposés sur Internet via un reverse proxy :
 ![Principe de L'infrastructure](https://design4green.org/infra.png)
 
