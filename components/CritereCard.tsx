@@ -5,6 +5,7 @@ import useClickOutside from '@/hook/ClickOuside';
 import Link from 'next/link';
 
 interface CritereCardProps {
+    id: string;
     url: string;
     critere: string;
     thematique: string;
@@ -12,7 +13,7 @@ interface CritereCardProps {
     controle: string;
 }
 
-const CritereCard: React.FC<CritereCardProps> = ({ url, critere, thematique, objectif, controle }) => {
+const CritereCard: React.FC<CritereCardProps> = ({ id, url, critere, thematique, objectif, controle }) => {
 
     const [showDetails, setShowDetails] = useState(false);
     const detailsRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,7 @@ const CritereCard: React.FC<CritereCardProps> = ({ url, critere, thematique, obj
     useClickOutside(detailsRef, closeDetails);
 
     return (
-        <div className="relative bg-slate-200 rounded-full p-4 mb-4 max-w-80vw md:max-w-480px mx-auto">
+        <div id={id} className="relative bg-slate-200 rounded-full p-4 mb-4 max-w-80vw md:max-w-480px mx-auto">
             <div className="flex items-center">
                 <div className='ml-4'>
                     <h3 className="text-lg font-bold">{thematique}</h3>

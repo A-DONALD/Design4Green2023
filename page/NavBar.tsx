@@ -1,10 +1,12 @@
 import React from 'react';
 const Navbar = () => {
     return (
-        <div className='top-0 border-4 border-black bg-slate-100 rounded-xl m-2 p-2'>
-            <a className='m-2 border-4 border-slate-800 hover:bg-slate-800 hover:text-white'>
-                Grader 30
-            </a>
+
+        <div className="relative bg-white border-4 border-slate-500 rounded-lg p-2 m-2">
+            <div className='ml-4'>
+                <h3 className="text-lg font-bold">thematique</h3>
+                <p className='text-sm text-gray-600 mb-2'>critere</p>
+            </div>
         </div>
     );
 }
