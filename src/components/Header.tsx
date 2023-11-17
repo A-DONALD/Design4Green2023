@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default class Header extends React.Component<{updater: (status: boolean) => void}, { isOpen: boolean }> {
+export default class Header extends React.Component<{ updater: (status: boolean) => void }, { isOpen: boolean }> {
 
-	constructor(props: {updater: (status: boolean) => void}) {
+	constructor(props: { updater: (status: boolean) => void }) {
 		super(props)
 		this.state = {
 			isOpen: false
