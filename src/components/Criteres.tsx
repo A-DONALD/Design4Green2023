@@ -3,26 +3,29 @@ import { Criteres as GoodPracticesType } from '../models/CritereModel'
 import Accordion from './Accordion'
 
 interface PropsGoodPractices {
-    goodPractices: GoodPracticesType[]
-    recommendations: string[]
+  criteres: GoodPracticesType[]
+  thematiques: string[]
+  updateSideBar?: () => void
 }
 
 interface StateGoodPractices {
-    goodPractices: GoodPracticesType[]
+  criteres: GoodPracticesType[]
 }
 
 export default class GoodPractices extends React.Component<PropsGoodPractices, StateGoodPractices> {
-    constructor(props: PropsGoodPractices) {
-        super(props)
-        this.state = {
-            goodPractices: []
-        }
+  constructor(props: PropsGoodPractices) {
+    super(props)
+    this.state = {
+      criteres: []
     }
+  }
 
-    render: () => React.ReactNode = () => {
-        return <div className='bg-gray-100 w-full pb-12'>
-            <Accordion critere={this.props.goodPractices} thematiques={this.props.recommendations} />
-        </div>
+  render: () => React.ReactNode = () => {
+    return <div className='bg-gray-100 w-full pb-12'>
+      <Accordion critere={this.props.criteres} thematiques={this.props.thematiques}
+        updateSideBar={this.props.updateSideBar || (() => null)}
+      />
+    </div>
 
-    }
+  }
 }

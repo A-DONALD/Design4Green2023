@@ -2,12 +2,12 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Head from 'next/head'
-import GoodPracticesModel, { Filter, Criteres as GoodPracticesType } from '../src/models/CritereModel'
+import CriteresModel, { Filter, Criteres as CriteresType } from '../src/models/CritereModel'
 
 const Header = dynamic(() => import('../src/components/Header'), { suspense: true })
-const GoodPractices = dynamic(() => import('../src/components/Criteres'), { suspense: true })
+const Criteres = dynamic(() => import('../src/components/Criteres'), { suspense: true })
 const Footer = dynamic(() => import('../src/components/Footer'), { suspense: true })
-const Architecture: NextPage<{ goodPractices: GoodPracticesType[], recommendations: string[] }> = ({ goodPractices, recommendations }) => {
+const Architecture: NextPage<{ criteres: CriteresType[], thematiques: string[] }> = ({ criteres, thematiques }) => {
 
     return <>
         <Head>
@@ -15,24 +15,26 @@ const Architecture: NextPage<{ goodPractices: GoodPracticesType[], recommendatio
             <meta name="description" content="Design 4 Green" />
         </Head>
         <Suspense fallback={`Loading...`}>
-            <Header />
-            <GoodPractices recommendations={recommendations} goodPractices={goodPractices} />
-            <Footer />
-        </Suspense>
-    </>
+    <Header updater={(status) => {
+      return null
+      }} />
+      <Criteres thematiques={thematiques} criteres={criteres} />
+      <Footer />
+    </Suspense>
+  </>
 }
 
 export default Architecture
 
 export async function getStaticProps() {
 
-    const goodPractices = GoodPracticesModel.getCriteresWithFilter(Filter.thematique, 'Architecture'),
-        recommendations = GoodPracticesModel.getDatasCritereWithFilter(Filter.thematique, 'Architecture')
+  const criteres = CriteresModel.getCriteresWithFilter(Filter.thematique, 'Architecture'),
+    thematiques = CriteresModel.getDatasCritereWithFilter(Filter.thematique, 'Architecture')
 
-    return {
-        props: {
-            goodPractices,
-            recommendations
-        }
+  return {
+    props: {
+      criteres,
+      thematiques
     }
+  }
 }

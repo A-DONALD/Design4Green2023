@@ -2,37 +2,37 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Head from 'next/head'
-import GoodPracticesModel, { Filter, Criteres as GoodPracticesType } from '../src/models/CritereModel'
+import CriteresModel, { Filter, Criteres as CriteresType } from '../src/models/CritereModel'
 
 const Header = dynamic(() => import('../src/components/Header'), { suspense: true })
-const GoodPractices = dynamic(() => import('../src/components/Criteres'), { suspense: true })
+const Criteres = dynamic(() => import('../src/components/Criteres'), { suspense: true })
 const Footer = dynamic(() => import('../src/components/Footer'), { suspense: true })
-const UXUI: NextPage<{ goodPractices: GoodPracticesType[], recommendations: string[] }> = ({ goodPractices, recommendations }) => {
+const UXUI: NextPage<{ criteres: CriteresType[], thematiques: string[] }> = ({ criteres, thematiques }) => {
 
-    return <>
-        <Head>
-            <title>DESIGN FOR GREEN | UI / UX</title>
-            <meta name="description" content="Design 4 Green" />
-        </Head>
-        <Suspense fallback={`Loading...`}>
-            <Header />
-            <GoodPractices recommendations={recommendations} goodPractices={goodPractices} />
-            <Footer />
-        </Suspense>
-    </>
+  return <>
+    <Head>
+      <title>DESIGN FOR GREEN | UI - UX</title>
+      <meta name="description" content="Design 4 Green" />
+    </Head>
+    <Suspense fallback={`Loading...`}>
+      <Header updater={(status) => null} />
+      <Criteres thematiques={thematiques} criteres={criteres} />
+      <Footer />
+    </Suspense>
+  </>
 }
 
 export default UXUI
 
 export async function getStaticProps() {
 
-    const goodPractices = GoodPracticesModel.getCriteresWithFilter(Filter.thematique, 'UX/UI'),
-        recommendations = GoodPracticesModel.getDatasCritereWithFilter(Filter.thematique, 'UX/UI')
+  const criteres = CriteresModel.getCriteresWithFilter(Filter.thematique, 'UX/UI'),
+    thematiques = CriteresModel.getDatasCritereWithFilter(Filter.thematique, 'UX/UI')
 
-    return {
-        props: {
-            goodPractices,
-            recommendations
-        }
+  return {
+    props: {
+      criteres,
+      thematiques
     }
+  }
 }
